@@ -1,2 +1,2 @@
-# Bitcoin-Mining
-This repository have algorithms to Bitcoin Mining
+# Algorithms
+This repository have a purpouse of study Algorithms and your applications.
