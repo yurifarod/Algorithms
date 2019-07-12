@@ -28,7 +28,7 @@ parametros = {'batch_size': [10, 30],
               'loos': ['binary_crossentropy', 'hinge'],
               'kernel_initializer': ['random_uniform', 'normal'],
               'activation': ['relu', 'tanh'],
-              'neurons': [16, 8]}
+              'neurons': [4, 6]}
 grid_search = GridSearchCV(estimator = classificador,
                            param_grid = parametros,
                            scoring = 'accuracy',

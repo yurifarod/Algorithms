@@ -19,25 +19,26 @@ classe = pd.read_csv('saidas-breast.csv')
 #Definimos um metodo de criacao da RNA para ser usado posteriormente
 def criarRede():
     classificador = Sequential()
-    classificador.add(Dense(units = 16, activation = 'relu', 
-                            kernel_initializer = 'random_uniform', input_dim = 30))
+    classificador.add(Dense(units = 8, activation = 'relu', 
+                            kernel_initializer = 'normal', input_dim = 30))
     
     #add droupout para evitar overfiting
     classificador.add(Dropout(0.2))
-    classificador.add(Dense(units = 16, activation = 'relu', 
-                            kernel_initializer = 'random_uniform'))
+    classificador.add(Dense(units = 8, activation = 'relu', 
+                            kernel_initializer = 'normal'))
     classificador.add(Dense(units = 1, activation = 'sigmoid'))
+    
     
     classificador.add(Dropout(0.2))
     
-    otimizador = keras.optimizers.Adam(lr = 0.001, decay = 0.0001, clipvalue = 0.5)
-    classificador.compile(optimizer = otimizador, loss = 'binary_crossentropy',
+    #otimizador = keras.optimizers.Adam(lr = 0.001, decay = 0.0001, clipvalue = 0.5)
+    classificador.compile(optimizer = 'adamax', loss = 'binary_crossentropy',
                           metrics = ['binary_accuracy'])
     return classificador
 
 classificador = KerasClassifier(build_fn = criarRede,
                                 epochs = 100,
-                                batch_size = 10)
+                                batch_size = 5)
 resultados = cross_val_score(estimator = classificador,
                              X = previsores, y = classe,
                              cv = 10, scoring = 'accuracy')
