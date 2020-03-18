@@ -1,23 +1,23 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-Created on Sun Mar  1 18:07:36 2020
+Created on Thu Mar  5 21:41:40 2020
 
 @author: yurifarod
 """
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, LSTM
+from keras.layers import Dense, LSTM, Dropout
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
-base = pd.read_csv('petr4-treinamento.csv')
+base = pd.read_csv('petr4_treinamento_ex.csv')
 base = base.dropna()
 base_treinamento = base.iloc[:, 1:2].values
 
-from sklearn.preprocessing import MinMaxScaler
-normalizador = MinMaxScaler(feature_range=(0,1))
+normalizador = MinMaxScaler(feature_range = (0, 1))
 base_treinamento_normalizada = normalizador.fit_transform(base_treinamento)
 
 previsores = []
@@ -33,25 +33,26 @@ regressor.add(LSTM(units = 100, return_sequences = True, input_shape = (previsor
 regressor.add(Dropout(0.3))
 
 regressor.add(LSTM(units = 50, return_sequences = True))
-regressor.add(Dropout(0.3))
+regressor.add(Dropout(0.2))
 
 regressor.add(LSTM(units = 50, return_sequences = True))
-regressor.add(Dropout(0.3))
+regressor.add(Dropout(0.2))
 
 regressor.add(LSTM(units = 50))
-regressor.add(Dropout(0.3))
+regressor.add(Dropout(0.2))
 
 regressor.add(Dense(units = 1, activation = 'linear'))
 
-regressor.compile(optimizer = 'rmsprop', loss = 'mean_squared_error',
+regressor.compile(optimizer = 'rmsprop', loss = 'mean_squared_error', 
                   metrics = ['mean_absolute_error'])
-regressor.fit(previsores, preco_real, epochs = 2, batch_size = 32)
+regressor.fit(previsores, preco_real, epochs = 100, batch_size = 32)
 
-base_teste = pd.read_csv('petr4-teste.csv', encoding='utf-8')
+base_teste = pd.read_csv('petr4_teste_ex.csv')
 preco_real_teste = base_teste.iloc[:, 1:2].values
+
 base_completa = pd.concat((base['Open'], base_teste['Open']), axis = 0)
 entradas = base_completa[len(base_completa) - len(base_teste) - 90:].values
-entradas = entradas.reshape(-1, 1)
+entradas = entradas.reshape(-1,1)
 entradas = normalizador.transform(entradas)
 
 X_teste = []
@@ -64,10 +65,10 @@ previsoes = normalizador.inverse_transform(previsoes)
 
 previsoes.mean()
 preco_real_teste.mean()
-    
-plt.plot(preco_real_teste, color = 'red', label = 'Preço real')
-plt.plot(previsoes, color = 'blue', label = 'Previsoes')
-plt.title('Previsao preço das acoes')
+
+plt.plot(preco_real_teste, color = 'red', label = 'Real')
+plt.plot(previsoes, color = 'blue', label = 'Previsto')
+plt.title('Previsao do preco das acoes')
 plt.xlabel('Tempo')
 plt.ylabel('Valor Yahoo')
 plt.legend()
