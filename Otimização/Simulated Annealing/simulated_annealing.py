@@ -19,14 +19,11 @@ def sphere_function(solucao, aux, d, bias):
     custo = custo + bias
     return custo
 
+#Se isso tiver certo eu cegue!
 def rosenbrock_function(solucao, aux, d, bias):
     custo = 0
-    for i in range(d-1):
-        number_1 = solucao[i] + aux[i]
-        number_2 = solucao[i+1] + aux[i+1]
-        custo += (100 * (number_1**2 - number_2)**2 + (number_1 - 1)**2)
-    
-    custo = custo + bias
+    solucao = solucao - aux + 1
+    custo = np.sum(100.0*(solucao[1:]-solucao[:-1]**2.0)**2.0 + (1-solucao[:-1])**2.0) + bias
     return custo
 
 #Tweak do Livro
@@ -57,7 +54,7 @@ p = 0.02
 r = 5
 
 aux = []
-f = open("../otimo-f1.txt", "r")
+f = open("../otimo-f3.txt", "r")
 for i in f:
     aux.append(int(i))
 
@@ -70,19 +67,19 @@ for k in range(10):
         number = random.randrange(-100, 100)
         solucao_atual.append(number)
     
-    custo_atual = sphere_function(solucao_atual, aux, d, bias)
+    custo_atual = rosenbrock_function(solucao_atual, aux, d, bias)
     
     #Aqui iniciamos o Simulated Annealing
     melhor_sol = []
     melhor_sol = np.copy(solucao_atual)
-    melhor_custo = sphere_function(melhor_sol, aux, d, bias)
+    melhor_custo = rosenbrock_function(melhor_sol, aux, d, bias)
     
     for i in range(limite):
-        temp_calc = float(i/limite)*1.75
+        temp_calc = float(i/limite)*1.2
         temp_comp = random.randrange(0, 1)
         
         solucao_aux = algorithm_eight(solucao_atual, d, p, r)
-        custo_aux = sphere_function(solucao_aux, aux, d, bias)
+        custo_aux = rosenbrock_function(solucao_aux, aux, d, bias)
         
         if(custo_aux < custo_atual or temp_calc < temp_comp):
             solucao_atual = np.copy(solucao_aux)
@@ -92,9 +89,10 @@ for k in range(10):
             melhor_sol = np.copy(solucao_atual)
             melhor_custo = custo_atual
         
+    print(melhor_custo)
     custos.append(melhor_custo)
-        
 
+print('---------------------')
 custos = np.array(custos)
 print(np.mean(custos))
 print(np.median(custos))

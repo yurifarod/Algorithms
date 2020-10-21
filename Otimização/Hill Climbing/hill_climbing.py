@@ -17,14 +17,11 @@ def sphere_function(solucao, aux, d, bias):
     custo = custo + bias
     return custo
 
+#Se isso tiver certo eu cegue!
 def rosenbrock_function(solucao, aux, d, bias):
     custo = 0
-    for i in range(d-1):
-        number_1 = solucao[i] + aux[i]
-        number_2 = solucao[i+1] + aux[i+1]
-        custo += (100 * (number_1**2 - number_2)**2 + (number_1 - 1)**2)
-    
-    custo = custo + bias
+    solucao = solucao - aux + 1
+    custo = np.sum(100.0*(solucao[1:]-solucao[:-1]**2.0)**2.0 + (1-solucao[:-1])**2.0) + bias
     return custo
 
 #Tweak do Livro
@@ -46,7 +43,7 @@ def algorithm_eight(solucao, d, p, r):
                 
     return actual_sol
     
-bias = -450
+bias = 390
 d = 100
 limite = 50000
 
@@ -55,7 +52,7 @@ p = 0.2
 r = 5
 
 aux = []
-f = open("../otimo-f1.txt", "r")
+f = open("../otimo-f3.txt", "r")
 for i in f:
     aux.append(int(i))
 
@@ -67,21 +64,23 @@ for k in range(10):
         solucao.append(number)
         
     #Aqui iniciamos o Hill Climbing
-    melhor_custo = sphere_function(solucao, aux, d, bias)
+    melhor_custo = rosenbrock_function(solucao, aux, d, bias)
     
     melhor_sol = []
     melhor_sol = np.copy(solucao)
         
     for i in range(limite):
         solucao = algorithm_eight(melhor_sol, d, p, r)
-        custo_atual = sphere_function(solucao, aux, d, bias)
+        custo_atual = rosenbrock_function(solucao, aux, d, bias)
         
         if(custo_atual < melhor_custo):
             melhor_custo = custo_atual
             melhor_sol = np.copy(solucao)
-        
+    
+    print(melhor_custo)
     custos.append(melhor_custo)
 
+print('---------------------')
 custos = np.array(custos)
 print(np.mean(custos))
 print(np.median(custos))
