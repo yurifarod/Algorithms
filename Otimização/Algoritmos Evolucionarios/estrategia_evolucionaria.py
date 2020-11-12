@@ -6,8 +6,10 @@ Created on Tue Oct  6 07:54:05 2020
 
 import random
 import statistics
+import operator
 import math
 import numpy as np
+from copy import copy
 
 #Funcao de custo
 def sphere_function(solucao, aux, d, bias):
@@ -45,45 +47,70 @@ def algorithm_eight(solucao, d, p, r):
             actual_sol[i] = valor
             
     return actual_sol
+    
+class Solucao:
+    def __init__(self, solucao, custo):
+        self.solucao = solucao
+        self.custo = custo
+    
+    def getCusto(self):
+        return self.custo
+    
+    def getSol(self):
+        return self.solucao
 
-#f1 = -450, f2 = 390 e f3 = -330    
+#f1 = -450, f2 = 390 e f3 = -330
 bias = -330
 d = 100
-limite = 50000
+limite = 1000
 
-#Variveis para o Alg 8
 p = 0.01
 r = 5
+
+n_pop = 100
+n_filhos = 1
 
 aux = []
 f = open("../otimo-f4.txt", "r")
 for i in f:
     aux.append(float(i.replace('\n', '')))
-
 aux= np.array(aux)
 
 custos = []
-for k in range(10):
+for i in range(10):
+    
     solucao = []
-    for i in range(d):
-        number = random.randrange(-100, 100)
-        solucao.append(number)
+    for j in range(n_pop):
+        sol = []
+        for k in range(d):
+            number = random.randrange(-100, 100)
+            sol.append(number)
+        custo = rastrigin_function(sol, aux, d, bias)
         
-    #Aqui iniciamos o Hill Climbing
-    melhor_custo = rastrigin_function(solucao, aux, d, bias)
+        solucao.append(Solucao(sol,custo)) 
     
-    melhor_sol = []
-    melhor_sol = np.copy(solucao)
-        
-    for i in range(limite):
-        solucao = algorithm_eight(melhor_sol, d, p, r)
-        custo_atual = rastrigin_function(solucao, aux, d, bias)
-        
-        if(custo_atual < melhor_custo):
-            melhor_custo = custo_atual
-            melhor_sol = np.copy(solucao)
+    for it in range(limite):
     
-    custos.append(melhor_custo)
+        n_sel = int(n_pop/(n_filhos+1))
+        selecionado = []
+        for j in range(n_sel):
+            selecionado.append(copy(solucao[j]))
+        
+        actual_size = len(selecionado)
+        for j in range(actual_size):
+            new_sol = algorithm_eight(solucao[j].getSol(), d, p, r)
+            new_custo = rastrigin_function(new_sol, aux, d, bias)
+            selecionado.append(Solucao(new_sol, new_custo))
+        
+        selecionado.sort(key=operator.attrgetter('custo'))
+        
+        solucao = copy(selecionado)
+        melhor_sol = selecionado[0]
+        
+        if  melhor_sol.getCusto() < 1000:
+            break
+    
+    custos.append(melhor_sol.getCusto())
 
 print('--------- RESULTADO ------------')
 custos = np.array(custos)

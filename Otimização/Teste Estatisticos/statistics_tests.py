@@ -6,23 +6,25 @@ Created on Wed Oct 21 02:10:00 2020
 @author: yurifarod
 """
 from scipy.stats import friedmanchisquare, kruskal, wilcoxon
+import matplotlib.pyplot as plt
 
-costs_max_hill_climbing_sphere = [3067, 2421, 2547, 2560, 2539, 2838, 3030, 2531, 2237, 2049]
-costs_max_simulated_annealing_sphere = [2498, 2279, 2305, 3031, 1963, 2947, 2829, 2140, 2419, 1963]
-costs_max_search_tabu_sphere = [2900, 2197, 2923, 2556, 2617, 2704, 2736, 2664, 2587, 2606]
+cost_hill = [3420.52744873, 3897.78744873, 3108.76744873, 2909.94744873, 2942.82744873,
+ 3614.90744873, 2856.44744873, 3706.42744873, 2855.72744873, 3998.82744873]
+cost_simulated = [3174.14744873, 2558.12744873, 3279.66744873, 2892.84744873, 3476.66744873,
+ 3206.52744873, 3122.62744873, 3477.56744873, 3499.40744873, 3545.82744873]
+cost_tabu = [2997.28744873, 2846.90744873, 3066.22744873, 3406.54744873, 2797.42744873,
+ 2714.56744873, 3453.74744873, 3647.98744873, 2900.22744873, 3464.18744873]
+cost_genetico = [1762.24744873, 1571.70744873, 1675.18744873, 1757.10744873, 1658.16744873,
+ 1633.30744873, 2104.36744873, 1787.08744873, 1736.04744873, 1540.66744873]
 
-costs_max_hill_climbing_rosenbrock = [2054, 1367, 2937, 973, 1649, 3429, 1888, 3546, 5351, 3349]
-costs_max_simulated_annealing_rosenbrock = [1907, 542, 1445, 1456, 2176, 1673, 2918, 2223, 1927, 1456]
-costs_max_search_tabu_rosenbrock = [2487, 2580, 1363, 3666, 2057, 2392, 2093, 2660, 2641, 1794]
+print(friedmanchisquare(cost_hill, cost_simulated, cost_tabu, cost_genetico))
+print(kruskal(cost_hill, cost_simulated, cost_tabu, cost_genetico))
+print(wilcoxon(cost_genetico, cost_tabu))
 
-print(friedmanchisquare(costs_max_hill_climbing_sphere, costs_max_simulated_annealing_sphere, costs_max_search_tabu_sphere))
-print(kruskal(costs_max_hill_climbing_sphere, costs_max_simulated_annealing_sphere, costs_max_search_tabu_sphere))
-print(wilcoxon(costs_max_hill_climbing_sphere, costs_max_simulated_annealing_sphere))
-print(wilcoxon(costs_max_hill_climbing_sphere, costs_max_search_tabu_sphere))
-print(wilcoxon(costs_max_simulated_annealing_sphere, costs_max_search_tabu_sphere))
-print()
-print(friedmanchisquare(costs_max_hill_climbing_rosenbrock, costs_max_simulated_annealing_rosenbrock, costs_max_search_tabu_rosenbrock))
-print(kruskal(costs_max_hill_climbing_rosenbrock, costs_max_simulated_annealing_rosenbrock, costs_max_search_tabu_rosenbrock))
-print(wilcoxon(costs_max_hill_climbing_rosenbrock, costs_max_simulated_annealing_rosenbrock))
-print(wilcoxon(costs_max_hill_climbing_rosenbrock, costs_max_search_tabu_rosenbrock))
-print(wilcoxon(costs_max_simulated_annealing_rosenbrock, costs_max_search_tabu_rosenbrock))
+  
+# Creating plot 
+data = ([cost_hill, cost_simulated, cost_tabu, cost_genetico])
+plt.boxplot(data) 
+  
+# show plot 
+plt.show()
