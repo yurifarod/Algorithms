@@ -69,18 +69,22 @@ def algorithm_24(vetorA, vetorB, d):
     return vetor_aux
     
 class Solucao:
-    def __init__(self, solucao, custo):
+    def __init__(self, solucao, custo, velocidade):
         self.solucao = solucao
         self.custo = custo
+        self.velocidade = velocidade
     
     def getCusto(self):
         return self.custo
     
     def getSol(self):
         return self.solucao
+    
+    def getVel(self):
+        return self.velocidade
 
 #f1 = -450, f2 = 390, f4 = -330, f6 = -140
-bias = -330
+bias = -140
 d = 100
 limite = 1000
 
@@ -88,7 +92,10 @@ p = 0.01
 r = 5
 
 n_pop = 100
-n_elite = 10
+
+v_max = 0.5
+c = 1.494
+peso = 0.5
 
 aux = []
 f = open("../otimo-f4.txt", "r")
@@ -101,39 +108,51 @@ custos = []
 for i in range(10):
     
     solucao = []
+    vel = []
     for j in range(n_pop):
         sol = []
         for k in range(d):
             number = random.randrange(-100, 100)
             sol.append(number)
+        for k in range(d):
+            vel.append(0)
         custo = rastrigin_function(sol, aux, d, bias)
         
-        solucao.append(Solucao(sol,custo)) 
+        solucao.append(Solucao(sol,custo, vel)) 
+        
+    solucao.sort(key=operator.attrgetter('custo'))
+    actual_Sol = copy(solucao[0])
+    global_Sol = copy(solucao[0])
     
     for it in range(limite):
-    
-        selecionado = []
-        for j in range(n_elite):
-            selecionado.append(copy(solucao[j]))
         
-        for j in range(n_pop-n_elite):
-            pai = random.randrange(0, n_elite)
-            mae = random.randrange(0, n_elite)
+        newSol = []
+        for j in range(n_pop):
+            vel = solucao[j].getVel()
+            sol = solucao[j].getSol()
             
-            children = algorithm_24(selecionado[pai].getSol(), selecionado[mae].getSol(), d)
-            new_sol = algorithm_eight(children, d, p, r)
-            new_custo = rastrigin_function(new_sol, aux, d, bias)
-            selecionado.append(Solucao(new_sol, new_custo))
+            for k in range(d):
+                vel[k] = peso * vel[k] + 0.3 * c * (actual_Sol.getSol()[k] - sol[k]) +  0.6 * c * (global_Sol.getSol()[k] - sol[k])
+                change = vel[k]
+                if vel[k] == 0:
+                    change = 1
+                vel[k] = 0.5 / change
+                
+            for k in range(d):
+                sol[k] = sol[k] + vel[k]
+            
+            custo = rastrigin_function(sol, aux, d, bias)
+            
+            newSol.append(Solucao(sol,custo, vel))
+            
+        solucao = copy(newSol)
+        solucao.sort(key=operator.attrgetter('custo'))
         
-        selecionado.sort(key=operator.attrgetter('custo'))
-        
-        solucao = copy(selecionado)
-        melhor_sol = selecionado[0]
-        
-        if  melhor_sol.getCusto() < -140:
-            break
+        actual_Sol = copy(solucao[0])
+        if solucao[0].getCusto() < global_Sol.getCusto():
+            global_Sol = copy(solucao[0])
     
-    custos.append(melhor_sol.getCusto())
+    custos.append(global_Sol.getCusto())
 
 print('--------- RESULTADO ------------')
 custos = np.array(custos)

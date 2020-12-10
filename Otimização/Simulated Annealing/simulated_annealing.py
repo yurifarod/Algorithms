@@ -32,6 +32,12 @@ def rastrigin_function(X, aux, d, bias):
     X = X + aux
     return A + sum([(x**2 - A * np.cos(2 * math.pi * x)) for x in X]) + bias
 
+def ackley_function(X, aux, d, bias):
+    y = X - aux
+    part1 = -0.2*np.sqrt((1/d)*np.sum(y**2))
+    part2 = (1/d)*(np.sum(np.cos(2*np.pi*y)))
+    return -20*np.exp(part1) -np.exp(part2) + 20 + np.exp(1) + bias
+
 #Tweak do Livro
 def algorithm_eight(solucao, d, p, r):
     actual_sol = []
@@ -48,7 +54,7 @@ def algorithm_eight(solucao, d, p, r):
             
     return actual_sol
 
-#f1 = -450, f2 = 390 e f3 = -330
+#f1 = -450, f2 = 390, f4 = -330, f6 = -140
 bias = -330
 d = 100
 limite = 50000
