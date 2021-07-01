@@ -36,14 +36,14 @@ for data in tweets_json:
     analysis = tb(texto)
     polarity = analysis.sentiment.polarity
     
-    dic = {'texto': texto, 'user': user, 'loc': location}
+    dic = {'texto': texto, 'user': user, 'loc': location, 'pol':polarity}
     final_json.append(dic)
 
 with open('data/dados_tweet.json', 'w') as f:
     json.dump(final_json, f)
 
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructField, StructType, StringType
+from pyspark.sql.types import StructField, StructType, StringType, FloatType
 
 appName = "PySpark Manipule Tweets"
 master = "local"
@@ -55,7 +55,8 @@ spark = SparkSession.builder.appName(appName).master(master).getOrCreate()
 schema = StructType([
     StructField('texto', StringType(), True),
     StructField('user', StringType(), True),
-    StructField('loc', StringType(), True)
+    StructField('loc', StringType(), True),
+    StructField('pol', FloatType(), True)
 ])
 
 # Create data frame
