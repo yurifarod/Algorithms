@@ -5,6 +5,8 @@ Created on Wed Sep 13 13:44:22 2023
 
 @author: yurifarod
 
+Tutorial de como usar a biblioteca deste código: 
+
 Para Descobrir o seu "chat id" do Telegram, link útil: https://www.alphr.com/find-chat-id-telegram/
     
 """
