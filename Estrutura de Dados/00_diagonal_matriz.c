@@ -1,10 +1,14 @@
 #include <stdio.h>
 int main(void)
 {
-  char matrix[10][10];
+  char matrix[100][100];
+  int dim;
 
-  for(int i = 0; i < 10; i++){
-  	for(int j = 0; j < 10; j++){
+  printf("Digite as dimensoes da imagem\n");
+  scanf("%d", &dim);
+
+  for(int i = 0; i < dim; i++){
+  	for(int j = 0; j < dim; j++){
 
   		if(i == j){
   			matrix[i][j] = '#';
@@ -15,8 +19,8 @@ int main(void)
   	}
   }
 
-  for(int i = 0; i < 10; i++){
-  	for(int j = 0; j < 10; j++){
+  for(int i = 0; i < dim; i++){
+  	for(int j = 0; j < dim; j++){
 
   		printf("%c", matrix[i][j]);
   	}
