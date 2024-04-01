@@ -5,9 +5,13 @@ Created on Wed Sep 13 13:44:22 2023
 
 @author: yurifarod
 
-Tutorial de como usar a biblioteca deste código: 
+Tutorial de como usar a biblioteca deste código:
 
-Para Descobrir o seu "chat id" do Telegram, link útil: https://www.alphr.com/find-chat-id-telegram/
+https://medium.com/@rubyabdullah14/building-a-telegram-bot-with-python-a-step-by-step-guide-5ca305bea6c0
+
+Para Descobrir o seu "chat id" do Telegram, link útil:
+
+https://www.alphr.com/find-chat-id-telegram/
     
 """
 
