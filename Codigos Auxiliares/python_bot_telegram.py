@@ -8,10 +8,15 @@ Created on Wed Sep 13 13:44:22 2023
 Tutorial de como usar a biblioteca deste código:
 
 https://medium.com/@rubyabdullah14/building-a-telegram-bot-with-python-a-step-by-step-guide-5ca305bea6c0
+https://www.hashtagtreinamentos.com/bot-de-telegram-com-python
 
 Para Descobrir o seu "chat id" do Telegram, link útil:
 
 https://www.alphr.com/find-chat-id-telegram/
+
+Como pegar o seu id através do uso direto da api do bot:
+
+https://api.telegram.org/botTOKEN_DE_VOCES/getUpdates
     
 """
 
