@@ -30,10 +30,15 @@ void iniciar(Aluno **cabeca){
 void insere(char nome[100], char curso[100], int matricula, Aluno **cabeca){
 	if(*cabeca == NULL){
 		*cabeca = (Aluno *) malloc(sizeof(Aluno));
-  		strcpy((*cabeca)->nome, nome);
-  		strcpy((*cabeca)->curso, curso);
-  		(*cabeca)->matricula = matricula;
         (*cabeca)->prox = NULL;
+
+		Aluno *novo;
+		novo = (Aluno *) malloc(sizeof(Aluno));
+	  	strcpy(novo->nome, nome);
+	  	strcpy(novo->curso, curso);
+	  	novo->matricula = matricula;
+	  	novo->prox = (*cabeca)->prox;
+	  	(*cabeca)->prox = novo;
 	}
 	else{
 		Aluno *novo;
@@ -50,6 +55,7 @@ void insere(char nome[100], char curso[100], int matricula, Aluno **cabeca){
 void imprime(Aluno **cabeca){
 	printf("\n\n========= RELATORIO DE ALUNOS =========\n");
 	Aluno *p = (*cabeca);
+	p = p->prox;
 	while(p != NULL){
 		printf("%d\n", p->matricula);
 		printf("%s\n", p->nome);
@@ -61,7 +67,7 @@ void imprime(Aluno **cabeca){
 
 Aluno* buscar(int matricula, Aluno **cabeca){
 	Aluno *p = (*cabeca);
-
+	
 	if(p == NULL){
 		return NULL;
 	}
