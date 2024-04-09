@@ -21,7 +21,7 @@ void iniciar(Aluno **cabeca){
 void insere(char nome[100], char curso[100], int matricula, Aluno **cabeca){
 	if(*cabeca == NULL){
 		*cabeca = (Aluno *) malloc(sizeof(Aluno));
-        (*cabeca)->prox = NULL;
+        	(*cabeca)->prox = NULL;
 
 		Aluno *novo;
 		novo = (Aluno *) malloc(sizeof(Aluno));
