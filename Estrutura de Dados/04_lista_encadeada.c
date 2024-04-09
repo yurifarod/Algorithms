@@ -6,10 +6,10 @@
 	c.dado é o dado de uma struct
 	p->dado é o dado de um ponteiro de struct
 
-	Proxima aual entramos com as REMOÇÕES!
 	Para este exercicio vamos desenvolver um sistema com um Menu com as opções
 	s -> sair
 	i -> inserir novo aluno
+ 	r -> remover aluno
 	r -> relatorio de alunos
 	Qualquer outro caractere deverá reiniciar o menu
 	Ao final do uso o arquivo deverá ser reescrito com todos os registros
