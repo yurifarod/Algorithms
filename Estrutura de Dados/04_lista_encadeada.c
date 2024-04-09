@@ -143,6 +143,7 @@ int main() {
 	insere("Jose dos Almeida", "Analise e Desenvolvimento de Sistemas", 2023002, &cabeca);
 	insere("Maria dos Santos", "Analise e Desenvolvimento de Sistemas", 2023003, &cabeca);
 	insere("Sonia de Jesus", "Analise e Desenvolvimento de Sistemas", 2023004, &cabeca);
+	insere("Armando Saraiva", "Analise e Desenvolvimento de Sistemas", 2023005, &cabeca);
 
 	imprime(&cabeca);
 
