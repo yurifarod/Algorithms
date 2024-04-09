@@ -5,15 +5,6 @@
 /*
 	c.dado é o dado de uma struct
 	p->dado é o dado de um ponteiro de struct
-
-	Para este exercicio vamos desenvolver um sistema com um Menu com as opções
-	s -> sair
-	i -> inserir novo aluno
- 	d -> deletar aluno
-	r -> relatorio de alunos
-	Qualquer outro caractere deverá reiniciar o menu
-	Ao final do uso o arquivo deverá ser reescrito com todos os registros
-
 */
 
 typedef struct tipo_aluno {
@@ -67,7 +58,7 @@ void imprime(Aluno **cabeca){
 
 Aluno* buscar(int matricula, Aluno **cabeca){
 	Aluno *p = (*cabeca);
-	
+
 	if(p == NULL){
 		return NULL;
 	}
