@@ -49,12 +49,12 @@ void mergeSort(int vetor[], int comeco, int fim){
 int main(){
     int tam = 10;
 
-    int v[10] = {5,8,1,6,9,0,3,2,7,4};
+    int vetor[10] = {5,8,1,6,9,0,3,2,7,4};
 
-    mergeSort(v, 0, tam-1);
+    mergeSort(vetor, 0, tam-1);
     
     for(int i = 0; i < tam; i++){
-        printf("%d ",v[i]);
+        printf("%d ",vetor[i]);
     }
     
     return 0;

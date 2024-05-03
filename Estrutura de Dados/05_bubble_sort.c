@@ -1,28 +1,30 @@
 #include<stdio.h>
 #include<stdlib.h>
-void swap(int *a, int *b){ 
+void trocar(int *a, int *b){ 
     int temp = *a; 
     *a = *b; 
     *b = temp; 
 } 
-void bubbleSort(int *v, int n){ 
+void bubbleSort(int *vetor, int n){ 
     if (n < 1)return; 
  
-    for (int i=0; i<n; i++) 
-        if (v[i] > v[i+1]) 
-            swap(&v[i], &v[i+1]);  
-    bubbleSort(v, n-1); 
+    for (int i=0; i<n; i++){
+        if (vetor[i] > vetor[i+1]) {
+            trocar(&vetor[i], &vetor[i+1]);  
+        }
+    }
+    bubbleSort(vetor, n-1); 
 } 
 
 int main(){
     int tam = 10;
 
-    int v[10] = {5,8,1,6,9,0,3,2,7,4};
+    int vetor[10] = {5,8,1,6,9,0,3,2,7,4};
 
-    bubbleSort(v,tam-1);
+    bubbleSort(vetor,tam-1);
     
     for(int i = 0; i < tam; i++){
-    	printf("%d ",v[i]);
+    	printf("%d ",vetor[i]);
     }
     
     return 0;
