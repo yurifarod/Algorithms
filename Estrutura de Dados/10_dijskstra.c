@@ -74,10 +74,10 @@ int main() {
     for(int i = 0; i < vertices; i++){
     	for(int j = 0; j < vertices; j++){
     		if(i == j){
-    			graph[j] = 0;
+    			graph[i][j] = 0;
     		}
     		else{
-    			graph[j] = INFINITO;
+    			graph[i][j] = INFINITO;
     		}
     	}
     }
