@@ -16,8 +16,8 @@ def send_telegram_msg(bot, id_phone, led, iterator):
         led.off()
     
 
-token = '6100016451:AAFbUCma9j3wmJhDmQvolWNJn0bT1gyiV44'
-id_phone = '886758070'
+token = 'put_your_token_here'
+id_phone = 'put_the_id_phone_here'
 bot = telebot.TeleBot(token)
    
 led = LED(17)
