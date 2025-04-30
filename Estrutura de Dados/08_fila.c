@@ -63,7 +63,7 @@ void imprime(Cliente **inicio){
 	printf("========= FILA =========\n");	
 }
 
-int remover_elemento(Cliente **inicio){
+int remover_elemento(Cliente **inicio, Cliente **fim){
 
 	Cliente *delete = (*inicio)->anterior;
 
@@ -72,12 +72,16 @@ int remover_elemento(Cliente **inicio){
 	int senha_del = delete->senha;
 
 	(*inicio)->anterior = delete->anterior;
-
-	printf("%s\n", delete->nome);
+	
 	free(delete);
 	delete = NULL;
 
 	printf("Cliente chamado: %s, senha: %d\n", nome_del, senha_del);
+
+	if ( (*inicio)->anterior == NULL) {
+		iniciar(inicio, fim);
+		printf("--- A FILA ESTA VAZIA ---\n");
+	}
 
 	return 1;
 }
@@ -93,13 +97,23 @@ int main() {
 
 	int senha = 0;
 
-	insere(1, "Joao dos Santos", 2023001, &inicio, &fim);
-	insere(2, "Jose dos Almeida", 2023002, &inicio, &fim);
-	insere(3, "Maria dos Santos", 2023003, &inicio, &fim);
-	remover_elemento(&inicio);
-	insere(4, "Sonia de Jesus", 2023004, &inicio, &fim);
-	remover_elemento(&inicio);
-	insere(5, "Armando Saraiva", 2023005, &inicio, &fim);
+	insere(senha++, "Joao dos Santos", 2023001, &inicio, &fim);
+	insere(senha++, "Jose dos Almeida", 2023002, &inicio, &fim);
+	insere(senha++, "Maria dos Santos", 2023003, &inicio, &fim);
+	remover_elemento(&inicio, &fim);
+	insere(senha++, "Sonia de Jesus", 2023004, &inicio, &fim);
+	remover_elemento(&inicio, &fim);
+	insere(senha++, "Armando Saraiva", 2023005, &inicio, &fim);
+	imprime(&inicio);
+	remover_elemento(&inicio, &fim);
+	remover_elemento(&inicio, &fim);
+	remover_elemento(&inicio, &fim);
+	insere(senha++, "Armando Saraiva", 2023005, &inicio, &fim);
+	insere(senha++, "Sonia de Jesus", 2023004, &inicio, &fim);
+	remover_elemento(&inicio, &fim);
+	insere(senha++, "Armando Saraiva", 2023005, &inicio, &fim);
+	insere(senha++, "Sonia de Jesus", 2023004, &inicio, &fim);
+	remover_elemento(&inicio, &fim);
 	imprime(&inicio);
 
 	return 0;
