@@ -46,7 +46,7 @@ def list_levshtein_similar_files(files):
                    remove_files.append(j)
     return remove_files
 
-folder = 'C:/Users/Sergipetec/Desktop/Estácio/Estruturas de Dados/3001 - Atividades/Atv02/'
+folder = '/home/directory'
 
 list_files = collect_exercise_files(folder)
 
