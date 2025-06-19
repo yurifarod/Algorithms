@@ -46,7 +46,7 @@ def list_levshtein_similar_files(files):
                    remove_files.append(j)
     return remove_files
 
-folder = '/home/directory'
+folder = '/home/directory/'
 
 list_files = collect_exercise_files(folder)
 
