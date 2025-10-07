@@ -1,2 +1,2 @@
 # Algorithms
-This repository have a purpouse of study Algorithms and your applications.
+This repository have a purpose of all kinds of study, focusing Algorithms and your applications.
