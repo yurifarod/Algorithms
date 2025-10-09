@@ -141,8 +141,8 @@ int remover_elemento(int matricula, Aluno **cabeca){
 	return 1;
 }
 
-int funcao_dispersao(int matricula){
-	return matricula % 10;
+int funcao_dispersao(int matricula, int size){
+	return matricula % size;
 }
 
 int main() { 
@@ -152,21 +152,21 @@ int main() {
 
 	iniciar_lista(lista, size);
 
-	insere("Antonia dos Santos", "Analise e Desenvolvimento de Sistemas", 2023000, &lista[funcao_dispersao(2023000)]);
-	insere("Joao dos Santos", "Analise e Desenvolvimento de Sistemas", 2023001, &lista[funcao_dispersao(2023001)]);
-	insere("Jose dos Almeida", "Analise e Desenvolvimento de Sistemas", 2023002, &lista[funcao_dispersao(2023002)]);
-	insere("Maria dos Santos", "Analise e Desenvolvimento de Sistemas", 2023003, &lista[funcao_dispersao(2023003)]);
-	insere("Sonia de Jesus", "Analise e Desenvolvimento de Sistemas", 2023004, &lista[funcao_dispersao(2023004)]);
-	insere("Armando Saraiva", "Analise e Desenvolvimento de Sistemas", 2023005, &lista[funcao_dispersao(2023005)]);
-	insere("Thiago Andre", "Analise e Desenvolvimento de Sistemas", 2023011, &lista[funcao_dispersao(2023011)]);
-	insere("Silvio Santos", "Analise e Desenvolvimento de Sistemas", 2023014, &lista[funcao_dispersao(2023014)]);
-	insere("Eustaquio Andrade", "Analise e Desenvolvimento de Sistemas", 2023006, &lista[funcao_dispersao(2023006)]);
+	insere("Antonia dos Santos", "Analise e Desenvolvimento de Sistemas", 2023000, &lista[funcao_dispersao(2023000, size)]);
+	insere("Joao dos Santos", "Analise e Desenvolvimento de Sistemas", 2023001, &lista[funcao_dispersao(2023001, size)]);
+	insere("Jose dos Almeida", "Analise e Desenvolvimento de Sistemas", 2023002, &lista[funcao_dispersao(2023002, size)]);
+	insere("Maria dos Santos", "Analise e Desenvolvimento de Sistemas", 2023003, &lista[funcao_dispersao(2023003, size)]);
+	insere("Sonia de Jesus", "Analise e Desenvolvimento de Sistemas", 2023004, &lista[funcao_dispersao(2023004, size)]);
+	insere("Armando Saraiva", "Analise e Desenvolvimento de Sistemas", 2023005, &lista[funcao_dispersao(2023005, size)]);
+	insere("Thiago Andre", "Analise e Desenvolvimento de Sistemas", 2023011, &lista[funcao_dispersao(2023011, size)]);
+	insere("Silvio Santos", "Analise e Desenvolvimento de Sistemas", 2023014, &lista[funcao_dispersao(2023014, size)]);
+	insere("Eustaquio Andrade", "Analise e Desenvolvimento de Sistemas", 2023006, &lista[funcao_dispersao(2023006, size)]);
 
 	imprime_lista(lista, size);
 
-	buscar(2023004, &lista[funcao_dispersao(2023004)]);
+	buscar(2023004, &lista[funcao_dispersao(2023004, size)]);
 
-	remover_elemento(2023004, &lista[funcao_dispersao(2023004)]);
+	remover_elemento(2023004, &lista[funcao_dispersao(2023004, size)]);
 
 	imprime_lista(lista, size);
 
