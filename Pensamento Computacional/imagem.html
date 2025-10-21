@@ -1,0 +1,14 @@
+<canvas id="meuCanvas" width="300" height="300"></canvas>
+
+<script>
+  let canvas = document.getElementById("meuCanvas");
+  let ctx = canvas.getContext("2d");
+
+  // Desenha uma imagem
+  let img = new Image();
+  img.src = "https://upload.wikimedia.org/wikipedia/pt/b/bf/SpongeBob_SquarePants_personagem.png";
+  img.onload = function() {
+	ctx.drawImage(img, 0, 0, 300, 300);
+  };
+</script>
+

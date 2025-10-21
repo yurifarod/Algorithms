@@ -1,0 +1,57 @@
+<script>
+var effectButton;
+var paintButton;
+var canvas;
+var context;
+
+function init() {
+  effectButton = document.getElementById('EffectButton');
+  paintButton = document.getElementById('PaintButton');
+  canvas = document.getElementById('Canvas');
+  context = canvas.getContext('2d');
+  var image = document.getElementById('SourceImage');
+  
+  // Set the canvas the same width and height of the image
+  canvas.width = image.width;
+  canvas.height = image.height;
+
+  paintButton.addEventListener('click', function () {
+    drawImage(image);
+  });
+  
+  effectButton.addEventListener('click', onClick);
+}
+
+function drawImage(image) {
+  context.drawImage(image, 0, 0);
+}
+
+function onClick() {
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    invertColors(imageData.data);
+    context.putImageData(imageData, 0, 0);
+}
+
+function invertColors(data) {
+  for (var i = 0; i < data.length; i+= 4) {
+    data[i] = 255 - data[i];
+    data[i+1] = 255 - data[i+1];
+    data[i+2] = 255 - data[i+2];
+  }
+}
+
+window.addEventListener('load', init);
+</script>
+
+<button id="PaintButton">Paint</button>
+<button id="EffectButton">Invert Colors</button>
+<div class="container">
+  <div class="column">
+    <img id="SourceImage" src="https://upload.wikimedia.org/wikipedia/pt/b/bf/SpongeBob_SquarePants_personagem.png" crossorigin="Anonymous">
+  </div>
+  <div class="column">
+    <div class="canvas">
+      <canvas id="Canvas"></canvas>
+    </div>
+  </div>
+</div>
