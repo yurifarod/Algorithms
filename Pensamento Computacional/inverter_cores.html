@@ -33,18 +33,24 @@ function onClick() {
 }
 
 function invertColors(data) {
+/*
+O codigo relevante está aqui
+*/
   for (var i = 0; i < data.length; i+= 4) {
     data[i] = 255 - data[i];
     data[i+1] = 255 - data[i+1];
     data[i+2] = 255 - data[i+2];
   }
+/*
+O codigo relevante acaba aqui
+*/
 }
 
 window.addEventListener('load', init);
 </script>
 
-<button id="PaintButton">Paint</button>
-<button id="EffectButton">Invert Colors</button>
+<button id="PaintButton">Copiar</button>
+<button id="EffectButton">Inverter Cores</button>
 <div class="container">
   <div class="column">
     <img id="SourceImage" src="https://upload.wikimedia.org/wikipedia/pt/b/bf/SpongeBob_SquarePants_personagem.png" crossorigin="Anonymous">
