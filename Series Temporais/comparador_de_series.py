@@ -21,7 +21,7 @@ def generate_trend_forecast(data):
     for i in range(ind):
         trend.append(data[i] + value)
     for i in range(ind, len(data)):
-        trend.append(data[i] - value)
+        trend.append(data[i] - (value*2))
     return trend
 
 def generate_mae_forecast(data):
@@ -38,6 +38,10 @@ def generate_mape_forecast(data):
     avg = np.mean(data)
     mape = []
     for i in range(len(data)):
+        if data[i] > avg:
+            avg += np.random.randint(data[i] - avg)
+        else:
+            avg -= np.random.randint(avg - data[i])
         mape.append(avg)
     return mape
     
@@ -49,10 +53,10 @@ def plot_data(data, color, label):
 plt.figure(figsize=(10, 6))
 serie_real = generate_data(30)
 plot_data(serie_real, 'blue', 'Serie "real"')
-forecast_trend = generate_trend_forecast(serie_real)
-plot_data(forecast_trend, 'lightcoral', 'Trend')
-forecast_mape = generate_mape_forecast(serie_real)
-plot_data(forecast_mape, 'lightgreen', 'MAPE')
+# forecast_trend = generate_trend_forecast(serie_real)
+# plot_data(forecast_trend, 'lightcoral', 'Trend')
+# forecast_mape = generate_mape_forecast(serie_real)
+# plot_data(forecast_mape, 'lightgreen', 'MAPE')
 forecast_mae = generate_mae_forecast(serie_real)
 plot_data(forecast_mae, 'lightgray', 'MAE')
 plt.legend()
