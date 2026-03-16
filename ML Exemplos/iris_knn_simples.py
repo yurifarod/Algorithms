@@ -20,21 +20,17 @@ classe = base.iloc[:, 4].values
 labelencoder = LabelEncoder()
 classe = labelencoder.fit_transform(classe)
 
-previsores_teste, previsores_treinamento, classe_teste, classe_treinamento = train_test_split(features, classe, test_size=0.25)
+features_teste, features_treinamento, classe_teste, classe_treinamento = train_test_split(features, classe, test_size=0.25)
 
 
 classificador = KNeighborsClassifier(n_neighbors=3)
-classificador.fit(previsores_treinamento, classe_treinamento)
+classificador.fit(features_treinamento, classe_treinamento)
 
+previsoes = classificador.predict(features_teste)
 
-previsoes = classificador.predict(previsores_teste)
-new_previsoes = []
-for i in previsoes:
-    new_previsoes.append(int(i))
-
-acuracia = accuracy_score(new_previsoes, classe_teste)
+acuracia = accuracy_score(previsoes, classe_teste)
 print("Acuracia do modelo: %.2f"%acuracia)
 
-matriz = confusion_matrix(new_previsoes, classe_teste)
+matriz = confusion_matrix(previsoes, classe_teste)
 
 print(matriz)
