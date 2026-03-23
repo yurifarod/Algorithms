@@ -31,4 +31,4 @@ Resultados
 media = resultados.mean()
 print("Media: "+ str(media))
 desvio = resultados.std()
-print("Desvio: "+desvio)
+print("Desvio: "+ str(desvio))
