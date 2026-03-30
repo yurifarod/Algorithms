@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Naive Bayes Interativo</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+.param{
+    margin:15px 0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+}
+
+.result{
+    margin-top:25px;
+    padding:20px;
+    background:#eef;
+    border-radius:8px;
+    font-size:18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Simulador Naive Bayes</h1>
+
+<p>Probabilidade de um email ser <b>Spam</b> considerando palavras presentes.</p>
+
+<div class="param">
+<label>P(Spam)</label>
+<input type="range" min="0" max="1" step="0.01" value="0.4" id="pSpam">
+<span id="pSpamVal">0.4</span>
+</div>
+
+<div class="param">
+<label>P(promoção | Spam)</label>
+<input type="range" min="0" max="1" step="0.01" value="0.7" id="promo">
+<span id="promoVal">0.7</span>
+</div>
+
+<div class="param">
+<label>P(grátis | Spam)</label>
+<input type="range" min="0" max="1" step="0.01" value="0.6" id="gratis">
+<span id="gratisVal">0.6</span>
+</div>
+
+<div class="param">
+<label>P(clique | Spam)</label>
+<input type="range" min="0" max="1" step="0.01" value="0.8" id="clique">
+<span id="cliqueVal">0.8</span>
+</div>
+
+<div class="result">
+Probabilidade proporcional calculada:
+
+<p id="resultado"></p>
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let pSpam = parseFloat(document.getElementById("pSpam").value)
+let promo = parseFloat(document.getElementById("promo").value)
+let gratis = parseFloat(document.getElementById("gratis").value)
+let clique = parseFloat(document.getElementById("clique").value)
+
+document.getElementById("pSpamVal").innerText = pSpam
+document.getElementById("promoVal").innerText = promo
+document.getElementById("gratisVal").innerText = gratis
+document.getElementById("cliqueVal").innerText = clique
+
+let resultado = pSpam * promo * gratis * clique
+
+document.getElementById("resultado").innerText =
+"P(Spam | palavras) ∝ " +
+pSpam + " × " +
+promo + " × " +
+gratis + " × " +
+clique +
+" = " + resultado.toFixed(4)
+
+}
+
+let sliders = document.querySelectorAll("input")
+
+sliders.forEach(slider=>{
+slider.addEventListener("input", calcular)
+})
+
+calcular()
+
+</script>
+
+</body>
+</html>
