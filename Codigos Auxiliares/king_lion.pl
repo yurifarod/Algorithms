@@ -39,7 +39,6 @@ regente(scar).
 
 % Herdeiro do trono
 herdeiro(X) :- leao(X), rei(X), pai(X, Y), write(Y); write(X).
-herdeiro(X) :- leao(X), rei(X); regente(Y), write(Y); write(X).
 bicho(X) :- leao(X), write('Leao');javali(X), write('Javali');write('Suricato').
 amigo(X, Y) :- amigo(Y, X).
 irmao(X, Y) :- irmao(Y, X).
