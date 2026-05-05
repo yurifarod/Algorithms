@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Página Principal</title>
+
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .cadastro { background-color: #4CAF50; }
+        .consulta { background-color: #2196F3; }
+        .delete { background-color: #f44336; }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+    
+</head>
+<body>
+	<h1>Menu Principal</h1>
+
+    <button class="btn cadastro" onclick="window.location.href='cadastro.html'">
+        Cadastro
+    </button>
+
+    <button class="btn consulta" onclick="window.location.href='consulta'">
+        Consulta
+    </button>
+
+    <button class="btn delete" onclick="window.location.href='delete.html'">
+        Delete
+    </button>
+</body>
+</html>
