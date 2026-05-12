@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+
+            margin: 0;
+        }
+
+        .container {
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+            width: 700px;
+        }
+
+        h2 {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            color: #333;
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th {
+
+            background-color: #4CAF50;
+
+            color: white;
+
+            padding: 12px;
+        }
+
+        td {
+
+            padding: 10px;
+
+            border-bottom: 1px solid #ddd;
+
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .voltar {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 10px 15px;
+
+            background-color: #2196F3;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            transition: 0.3s;
+        }
+
+        .voltar:hover {
+            opacity: 0.85;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Lista de Produtos</h2>
+
+    <table>
+
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+        </tr>
+
+        <tr th:each="p : ${produtos}">
+
+            <td th:text="${p.nome}"></td>
+
+            <td th:text="${p.categoria}"></td>
+
+            <td>
+                R$
+                <span th:text="${p.valor}"></span>
+            </td>
+
+        </tr>
+
+    </table>
+
+    <a href="/" class="voltar">
+        Voltar
+    </a>
+
+</div>
+
+</body>
+</html>
