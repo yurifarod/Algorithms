@@ -41,6 +41,7 @@ produto-spring/
 │       │
 │       ├── controller
 │       │   └── ProdutoController.java
+│       │   └── ProdutoRestController.java
 │       │
 │       ├── dao
 │       │   └── ProdutoDAO.java
