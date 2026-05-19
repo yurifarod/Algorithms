@@ -54,6 +54,13 @@ src/main/java
 
 src/main/resources
 ├── templates
+│   ├── delete.html
+│   ├── erro.html
+│   ├── form.html
+│   ├── index.html
+│   ├── list.html
+│   └── success.html
+│
 └── application.properties
 
 Arquivos principais
