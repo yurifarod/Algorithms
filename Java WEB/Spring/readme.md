@@ -31,34 +31,30 @@ O projeto segue o padrão MVC (Model-View-Controller).
 ## Estrutura Hierárquica
 
 ```text
-produto-spring/
-│
-├── src/main/java
-│   │
-│   └── com.example.demo
-│       │
-│       ├── ProdutoSpringApplication.java
-│       │
-│       ├── controller
-│       │   └── ProdutoController.java
-│       │   └── ProdutoRestController.java
-│       │
-│       ├── dao
-│       │   └── ProdutoDAO.java
-│       │
-│       └── entity
-│           └── Produto.java
-│
-├── src/main/resources
-│   │
-│   ├── templates
-│   │   ├── delete.html
-│   │   ├── error.html
-│   │   ├── form.html
-│   │   ├── index.html
-│   │   ├── list.html
-│   │   └── success.html
-│   │
-│   └── application.properties
-│
-└── pom.xml
+src/main/java
+└── com.example.demo
+    ├── ProdutoSpringApplication.java
+    │
+    ├── controller
+    │   ├── ClienteController.java
+    │   ├── ProdutoController.java
+    │   └── ProdutoRestController.java
+    │
+    ├── dao
+    │   └── ProdutoDAO.java
+    │
+    ├── entity
+    │   └── Produto.java
+    │
+    ├── model
+    │   └── Cliente.java
+    │
+    └── repository
+        └── ClienteRepository.java
+
+src/main/resources
+├── templates
+└── application.properties
+
+Arquivos principais
+├── pom.xml
