@@ -19,7 +19,7 @@ public class ClienteController {
     @Autowired
     private ClienteRepository repository;
 
-    @GetMapping("/{nome}/{cpf}")
+    @GetMapping("/inserir/{nome}/{cpf}")
     public Cliente criar(
             @PathVariable String nome,
             @PathVariable String cpf) {
@@ -31,7 +31,7 @@ public class ClienteController {
         return repository.save(cliente);
     }
 
-    @DeleteMapping("/cpf/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     public void deletarPorCpf(@PathVariable String cpf) {
         repository.deleteByCpf(cpf);
     }
