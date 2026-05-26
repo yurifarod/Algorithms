@@ -37,6 +37,7 @@ src/main/java
     │
     ├── controller
     │   ├── ClienteController.java
+    │   ├── ImagemController.java
     │   ├── ProdutoController.java
     │   └── ProdutoRestController.java
     │
@@ -44,19 +45,25 @@ src/main/java
     │   └── ProdutoDAO.java
     │
     ├── entity
-    │   └── Produto.java
+    │   ├── Produto.java
+    │   └── Imagem.java
     │
     ├── model
     │   └── Cliente.java
     │
+    ├── service
+    │   └── ImagemService.java
+    │
     └── repository
-        └── ClienteRepository.java
+        ├── ClienteRepository.java
+        └── ImagemRepository.java
 
 src/main/resources
 ├── templates
 │   ├── delete.html
 │   ├── erro.html
 │   ├── form.html
+│   ├── imagem.html
 │   ├── index.html
 │   ├── list.html
 │   └── success.html
