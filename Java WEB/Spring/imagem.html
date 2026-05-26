@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload de Imagem</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .card{
+            background:white;
+            width:400px;
+            padding:40px;
+            border-radius:12px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:25px;
+            color:#333;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        input[type="file"]{
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            background:#fafafa;
+        }
+
+        button{
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#1976d2;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#125aa0;
+        }
+
+        .mensagem{
+            margin-top:20px;
+            text-align:center;
+            color:green;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Upload de Arquivo</h1>
+
+    <form method="post"
+          action="/imagem/upload"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="arquivo">
+
+        <button type="submit">
+            Enviar Arquivo
+        </button>
+
+    </form>
+
+    <div class="mensagem"
+         th:text="${mensagem}">
+    </div>
+
+</div>
+
+</body>
+</html>
