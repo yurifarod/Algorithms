@@ -16,7 +16,7 @@ WHERE pid <> pg_backend_pid() --nao matar minha propria sessao
 		AND datname = 'nome_database';
 
 
-/*Dez maiores taelas*/
+/*Dez maiores tabelas*/
 WITH table_stats AS (
 	select schemaname,
 			tablename,
@@ -36,3 +36,14 @@ order by table_stats.total_size desc,
 		table_stats.index_size desc,
 		table_stats.table_size desc
 limit 10;
+
+
+/*Consultar segmentos caidos*/	
+SELECT content,
+		hostname,
+		address,
+		port,
+		status,
+		role 
+FROM gp_segment_configuration 
+WHERE status <> 'u';
