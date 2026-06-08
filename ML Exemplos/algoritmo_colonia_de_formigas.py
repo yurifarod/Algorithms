@@ -119,15 +119,10 @@ for iteracao in range(ITERACOES):
             feromonio[i] = 0.01
 
     '''
-    Escolho a melhor solução para fazser o deposito
+    Escolho a melhor solução para fazer o deposito
     '''
 
     melhor_iteracao, valor_iteracao = max(solucoes,key=lambda x: x[1])
-
-    # ----------------------------------------------
-    # Depósito da melhor da iteração
-    # ----------------------------------------------
-
     deposito = Q * (valor_iteracao / melhor_valor)
 
     for i in range(len(melhor_iteracao)):
@@ -136,18 +131,16 @@ for iteracao in range(ITERACOES):
             feromonio[i] += deposito
 
 
-print("\n===================================")
 print("Melhor solução encontrada")
-print("===================================")
 
-print("\nVetor binário:")
+print("Vetor binário:")
 print(melhor_solucao)
 
-print("\nValor total:", melhor_valor)
+print("Valor total:", melhor_valor)
 
 peso_final = 0
 
-print("\nItens escolhidos:")
+print("Itens escolhidos:")
 
 for i, gene in enumerate(melhor_solucao):
 
@@ -163,9 +156,9 @@ for i, gene in enumerate(melhor_solucao):
             f"valor={valor}"
         )
 
-print("\nPeso total:", peso_final)
+print("Peso total:", peso_final)
 print("Capacidade :", CAPACIDADE)
 
-print("\nFeromônios finais:")
+print("Feromônios finais:")
 for i, f in enumerate(feromonio):
     print(f"Item {i+1}: {f:.3f}")
