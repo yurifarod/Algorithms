@@ -21,10 +21,10 @@ class_names = iris.target_names
 labelencoder = LabelEncoder()
 classe = labelencoder.fit_transform(classe)
 
-previsores_teste, previsores_treinamento, classe_teste, classe_treinamento = train_test_split(features, classe, test_size=0.25)
+previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(features, classe, test_size=0.25)
 
 
-classificador = clf = DecisionTreeClassifier(criterion='gini')
+classificador = DecisionTreeClassifier(criterion='gini')
 classificador.fit(previsores_treinamento, classe_treinamento)
 
 
@@ -37,5 +37,5 @@ matriz = confusion_matrix(previsoes, classe_teste)
 print(matriz)
 
 plt.figure(figsize=(12,8))
-plot_tree(clf, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
+plot_tree(classificador, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
 plt.show()

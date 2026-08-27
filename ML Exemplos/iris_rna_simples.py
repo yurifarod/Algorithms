@@ -31,8 +31,8 @@ from keras.models import Sequential
 from keras.layers import Dense
 
 classificador = Sequential()
-classificador.add(Dense(units = 4, activation = 'relu', input_dim = 4))
-classificador.add(Dense(units = 4, activation = 'relu'))
+classificador.add(Dense(units = 10, activation = 'relu', input_dim = 4))
+classificador.add(Dense(units = 10, activation = 'relu'))
 
 # Na camada de saida a funcao softmax e necessaria qnd se ha mais de uma classe
 # Ha tb uma saida para cada classe

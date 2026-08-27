@@ -23,7 +23,7 @@ classificador = KNeighborsClassifier(n_neighbors=3)
 
 resultados = cross_val_score(estimator = classificador,
                              X = features, y = classe,
-                             cv = 10, scoring = 'accuracy')
+                             cv = 5, scoring = 'accuracy')
 
 '''
 Resultados

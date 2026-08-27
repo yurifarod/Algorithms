@@ -20,7 +20,7 @@ classe = base.iloc[:, 4].values
 labelencoder = LabelEncoder()
 classe = labelencoder.fit_transform(classe)
 
-features_teste, features_treinamento, classe_teste, classe_treinamento = train_test_split(features, classe, test_size=0.25)
+features_treinamento, features_teste, classe_treinamento, classe_teste = train_test_split(features, classe, test_size=0.25)
 
 
 classificador = KNeighborsClassifier(n_neighbors=3)

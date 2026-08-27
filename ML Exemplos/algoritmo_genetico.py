@@ -62,7 +62,7 @@ def mutacao(individuo, taxa=0.05):
 
 
 POPULACAO = 20
-GERACOES = 100
+GERACOES = 1000
 
 populacao = [gerar_individuo() for _ in range(POPULACAO)]
 
