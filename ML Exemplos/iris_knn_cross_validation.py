@@ -19,16 +19,18 @@ classe = base.iloc[:, 4].values
 labelencoder = LabelEncoder()
 classe = labelencoder.fit_transform(classe)
 
-classificador = KNeighborsClassifier(n_neighbors=3)
+for n in range(1, 4):
+	classificador = KNeighborsClassifier(n_neighbors=n)
 
-resultados = cross_val_score(estimator = classificador,
-                             X = features, y = classe,
-                             cv = 5, scoring = 'accuracy')
+	resultados = cross_val_score(estimator = classificador,
+	                             X = features, y = classe,
+	                             cv = 5, scoring = 'accuracy')
 
-'''
-Resultados
-'''
-media = resultados.mean()
-print("Media: "+ str(media))
-desvio = resultados.std()
-print("Desvio: "+ str(desvio))
+	'''
+	Resultados
+	'''
+	print(n)
+	media = resultados.mean()
+	print("Media: "+ str(media))
+	desvio = resultados.std()
+	print("Desvio: "+ str(desvio))
