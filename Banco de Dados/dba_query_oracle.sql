@@ -34,8 +34,7 @@ where b.paddr = a.addr
 ALTER SYSTEM KILL SESSION '52, 1367' IMMEDIATE;
 
 /*
- * LOCKED TABLES QUERY
- * 
+ * LOCKED TABLES QUERY 
  * */
 SELECT B.Owner,
 		B.Object_Name,
@@ -44,3 +43,13 @@ SELECT B.Owner,
 		a.*
 FROM V$Locked_Object A, All_Objects B
 WHERE A.Object_ID = B.Object_ID;
+
+/*
+* Buscar quais tabelas interagem com quais pacotes
+*/
+
+SELECT distinct owner, name, type
+FROM all_source
+WHERE type IN ('PACKAGE', 'PACKAGE BODY')
+  AND UPPER(text) LIKE '%NOME_DA_TABELA%'
+ORDER BY owner, name;
