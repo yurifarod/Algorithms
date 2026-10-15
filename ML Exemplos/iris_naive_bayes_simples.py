@@ -24,7 +24,7 @@ classe = labelencoder.fit_transform(classe)
 previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(features, classe, test_size=0.25)
 
 
-classificador = GaussianNB(priors=None, var_smoothing=1e-9)
+classificador = GaussianNB(priors=None)
 classificador.fit(previsores_treinamento, classe_treinamento)
 
 

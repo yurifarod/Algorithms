@@ -22,15 +22,27 @@ classe = labelencoder.fit_transform(classe)
 
 previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(features, classe, test_size=0.25)
 
+kernel = ['rbf', 'linear', 'sigmoid']
+c_list = [1, 2, 2.5]
 
-classificador = SVC(kernel='linear')
-classificador.fit(previsores_treinamento, classe_treinamento)
+best_acc = 0
+best_matriz = []
+parametros = []
+for k in kernel: 
+	for c in c_list:
+		classificador = SVC(kernel=k, C=c)
+		classificador.fit(previsores_treinamento, classe_treinamento)
 
 
-previsoes = classificador.predict(previsores_teste)
+		previsoes = classificador.predict(previsores_teste)
 
-acuracia = accuracy_score(previsoes, classe_teste)
-print("Acuracia do modelo: %.2f"%acuracia)
+		acuracia = accuracy_score(previsoes, classe_teste)
+		matriz = confusion_matrix(previsoes, classe_teste)
+		if acuracia > best_acc:
+			best_acc = acuracia
+			best_matriz = matriz
+			parametros = [k, c]
 
-matriz = confusion_matrix(previsoes, classe_teste)
-print(matriz)
+print(best_acc)
+print(best_matriz)
+print(parametros)

@@ -27,7 +27,6 @@ previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = tra
 classificador = DecisionTreeClassifier(criterion='gini')
 classificador.fit(previsores_treinamento, classe_treinamento)
 
-
 previsoes = classificador.predict(previsores_teste)
 
 acuracia = accuracy_score(previsoes, classe_teste)
